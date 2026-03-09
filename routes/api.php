@@ -1,25 +1,14 @@
 <?php
-
+use App\Http\Controllers\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+// CRUD Student
+Route::post('/students', [StudentController::class, 'store']);
 
-Route::get('/ping', function () {
-return response()->json(['message' => 'pong']);
-});
+Route::get('/students', [StudentController::class, 'index']); 
 
-Route::get('/status', function () {
-    return response()->json([
-        "app" => "Todo API",
-        "status" => "running"
-    ]);
-});
+Route::put('/students/{nim}', [StudentController::class, 'update']);
+Route::patch('/students/{nim}', [StudentController::class, 'update']);
 
-Route::get('/greet/{name}', function ($name) {
-    return response()->json([
-        "message" => "Hello, " . $name . "!"
-    ]);
-});
+Route::delete('/students/{nim}', [StudentController::class, 'destroy']);
