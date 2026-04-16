@@ -1,14 +1,10 @@
 <?php
-use App\Http\Controllers\StudentController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContainerController;
 
-// CRUD Student
-Route::post('/students', [StudentController::class, 'store']);
-
-Route::get('/students', [StudentController::class, 'index']); 
-
-Route::put('/students/{nim}', [StudentController::class, 'update']);
-Route::patch('/students/{nim}', [StudentController::class, 'update']);
-
-Route::delete('/students/{nim}', [StudentController::class, 'destroy']);
+Route::get('/containers/search', [ContainerController::class, 'search']);
+Route::get('/containers', [ContainerController::class, 'index']);
+Route::post('/containers', [ContainerController::class, 'store']);
+Route::patch('/containers/{id}/archive', [ContainerController::class, 'updateStatus']);
+Route::delete('/containers/{id}', [ContainerController::class, 'destroy']);
+Route::get('/containers/{id}/logs', [ContainerController::class, 'logs']);

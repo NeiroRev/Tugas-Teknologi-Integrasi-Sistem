@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WowoClean</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #333; padding-bottom: 10px; }
+        .total-badge { background: #007bff; color: white; padding: 10px 15px; border-radius: 5px; font-weight: bold; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-weight: bold; margin-bottom: 5px; }
+        .form-group input, .form-group select { width: 300px; padding: 8px; }
+        .error-text { color: red; font-size: 12px; display: block; margin-top: 5px; }
+        
+        /* Styling Tabel Baru */
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: #f4f4f4; font-weight: bold; }
+        .action-btns button { padding: 5px 10px; margin-right: 5px; cursor: pointer; }
+        
+        .badge-active { color: green; font-weight: bold; }
+        .badge-archived { color: gray; font-weight: bold; text-decoration: line-through; }
+        button { padding: 6px 10px; cursor: pointer; margin-right: 5px; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1> WowoClean (Sistem Logistik Pengelolaan Limbah)</h1>
+        <div class="total-badge">Total Muatan: <span id="total-weight">0</span> kg</div>
+    </div>
+
+    <h3>Masukkan Kontainer Baru</h3>
+    <div class="form-group">
+        <label>ID Kontainer (2 Huruf + 5 Angka):</label>
+        <input type="text" id="container_id" placeholder="Contoh: WH12345">
+        <span class="error-text" id="err-container_id"></span>
+    </div>
+    <div class="form-group">
+        <label>Jenis Limbah:</label>
+        <select id="waste_type">
+            <option value="Plastic">Plastic</option>
+            <option value="Chemical">Chemical</option>
+            <option value="Biological">Biological</option>
+        </select>
+        <span class="error-text" id="err-waste_type"></span>
+    </div>
+    <div class="form-group">
+        <label>Berat (kg):</label>
+        <input type="number" id="weight_kg" placeholder="10 - 5000">
+        <span class="error-text" id="err-weight_kg"></span>
+    </div>
+    <button onclick="createContainer()">Simpan Kontainer</button>
+
+    <hr>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.14.0/dist/axios.min.js"></script>
+    <script src="app.js"></script>
+    <hr>
+    <h3>Daftar Kontainer</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Container ID</th>
+                <th>Waste Type</th>
+                <th>Weight (kg)</th>
+                <th>Status</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+            </tbody>
+    </table>
+</body>
+</html>
